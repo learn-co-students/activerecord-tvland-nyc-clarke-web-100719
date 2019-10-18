@@ -8,6 +8,6 @@ class Actor < ActiveRecord::Base
     end
 
     def list_roles
-        self.characters.map { |character| character.name + " - " + character.show.name }
+        characters.includes(:show).map { |character| "#{character.name} - #{character.show.name}" }
     end
 end
